@@ -1,0 +1,162 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<br>
+<div class="container d-flex justify-content-center">
+    <div class="card shadow-lg rounded-3 overflow-hidden fade-in floating" style="max-width: 840px;">
+        <div class="row g-0">
+            <!-- Image Section -->
+            <div class="col-md-4">
+                <img src="{{ object.image_url }}" class="card-img h-100 zoom-img" alt="Product Image" style="object-fit: cover;">
+            </div>
+
+            <!-- Details Section -->
+            <div class="col-md-8 bg-light">
+                <div class="card-body">
+                    <h4 class="card-title fw-bold text-primary slide-in-left">Product ID: #{{ object.pk }}</h4>
+                    <p class="card-text text-muted"><strong>Author:</strong> {{ object.author }}</p>
+                    <hr>
+                    <p class="card-text text-dark slide-in-right">{{ object.description }}</p>
+                    <p class="card-text"><strong>Price:</strong> <span class="text-success fs-5">₹ {{ object.price|floatformat:2 }}</span></p>
+
+                    <!-- Availability -->
+                    {% if object.book_available %}
+                    <span class="badge bg-success p-2 rounded-pill bounce">✅ In Stock</span>
+                    {% else %}
+                    <span class="badge bg-danger p-2 rounded-pill bounce">❌ Out of Stock</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Follow & Buy Section -->
+<div class="container text-center mt-4 fade-in">
+    <a href="{{ object.follow_author }}" class="btn btn-outline-primary px-4 fw-bold custom-btn glow-on-hover">📢 Follow Author</a>
+    {% if object.book_available %}
+    <a href="/insert/{{object.id}}" class="btn btn-success px-4 fw-bold custom-btn glow-on-hover">💳 Buy Now</a>
+    {% else %}
+    <h4 class="text-danger mt-3 fade-in">Out of Stock!</h4>
+    {% endif %}
+</div>
+
+<!-- Custom Styles & Animations -->
+<style>
+    /* Smooth animated background */
+    body {
+        background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+        background-size: 400% 400%;
+        animation: backgroundAnimation 12s infinite ease-in-out;
+    }
+
+    @keyframes backgroundAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Floating effect on the card */
+    .floating {
+        animation: floatingEffect 3s ease-in-out infinite;
+    }
+
+    @keyframes floatingEffect {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+        animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Slide-in animations */
+    .slide-in-left {
+        animation: slideInLeft 1s ease-in-out;
+    }
+
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .slide-in-right {
+        animation: slideInRight 1s ease-in-out;
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* Bounce effect for availability badge */
+    .bounce {
+        animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+        from {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Image zoom effect */
+    .zoom-img {
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .zoom-img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Buttons with hover glow effect */
+    .custom-btn {
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .glow-on-hover:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.4);
+    }
+
+    /* Card hover effect */
+    .card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+{% endblock content %}

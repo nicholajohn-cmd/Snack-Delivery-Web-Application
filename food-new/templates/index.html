@@ -1,0 +1,139 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>SNACKS SHOP</title>
+
+  <style>
+    /* 🌈 Background Animation */
+    body {
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 🎆 Glow Effect for "Snacks Shop" */
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      animation: glowing 1.5s infinite alternate;
+    }
+
+    @keyframes glowing {
+      from { text-shadow: 0px 0px 5px rgba(255, 193, 7, 0.6); }
+      to { text-shadow: 0px 0px 15px rgba(255, 193, 7, 0.9); }
+    }
+
+    /* 🔄 Navbar Item Hover Lift */
+    .nav-link {
+      position: relative;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-link:hover {
+      transform: translateY(-2px);
+      color: #ffc107 !important;
+    }
+
+    /* 🛒 "Add-to-Cart" Bouncing Text */
+    .nav-item a[href*="view_card"] {
+      animation: bounceText 1.5s infinite ease-in-out;
+    }
+
+    @keyframes bounceText {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* 🔍 Search Bar Expanding Effect */
+    .search input {
+      border-radius: 20px;
+      transition: box-shadow 0.3s ease-in-out, width 0.4s ease-in-out;
+      width: 180px;
+    }
+
+    .search input:focus {
+      box-shadow: 0px 0px 12px rgba(255, 193, 7, 0.7);
+      width: 220px;
+    }
+
+    /* 🎭 Slide-In Navbar Animation */
+    .navbar {
+      animation: slideIn 0.8s ease-in-out;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">Snacks Shop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'view_card' %}">🛒 Add-to-Cart</a></li>
+          <li class="nav-item"><a class="nav-link" href="/saveor">Order</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="/adminlogin">Admin</a></li>
+        </ul>
+
+        <!-- Login/Signup Dropdown -->
+        <div class="btn-group">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+            Login/Signup
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            {% if user.is_authenticated %}
+              <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+            {% else %}
+              <li><a class="dropdown-item" href="/accounts/login">Log In</a></li>
+              <li><a class="dropdown-item" href="/signup">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <!-- Search Bar -->
+        <form class="search ms-3" method="get" action="{% url 'search_snacks' %}">
+          <input name="q" class="form-control form-control-sm" type="text" autocomplete="off" placeholder="Search Snacks" value="{{ request.GET.q }}">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <br>
+
+  <div class="container">
+    {% block content %}
+    {% endblock content %}
+  </div>
+
+  <!-- Bootstrap Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

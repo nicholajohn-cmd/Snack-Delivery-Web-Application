@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Styled Header -->
+    <h3 class="text-center fw-bold text-white py-3 rounded search-header">
+        Search Results for "{{ query }}"
+    </h3>
+
+    {% if snacks %}
+        <div class="row">
+            {% for snack in snacks %}
+                <div class="col-md-4">
+                    <div class="card snack-card shadow-lg">
+                        <a href="{% url 'product_detail' snack.pk %}" class="text-decoration-none">
+                            {% if snack.image_url %}
+                                <img src="{{ snack.image_url }}" class="card-img-top snack-image" alt="{{ snack.ssnscks }}">
+                            {% endif %}
+                            <div class="card-body text-center">
+                                <h5 class="card-title fw-bold text-primary">{{ snack.ssnscks }}</h5>
+                                <p class="card-text text-muted">{{ snack.description|truncatewords:15 }}</p>
+                                <p class="card-text text-success fs-5 fw-bold">₹{{ snack.price }}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center mt-5">
+            <h4 class="text-danger animated-message">No snacks found matching your search. 😔</h4>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Custom CSS -->
+<style>
+    /* Search Header */
+    .search-header {
+        background: linear-gradient(90deg, #ff8c00, #ff3b3b);
+        box-shadow: 0px 5px 15px rgba(255, 136, 0, 0.5);
+    }
+
+    /* Snack Card */
+    .snack-card {
+        border-radius: 15px;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    .snack-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Snack Image */
+    .snack-image {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .snack-card:hover .snack-image {
+        transform: scale(1.1);
+    }
+
+    /* Animated No Results Message */
+    .animated-message {
+        animation: fadeIn 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0.5;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+{% endblock %}

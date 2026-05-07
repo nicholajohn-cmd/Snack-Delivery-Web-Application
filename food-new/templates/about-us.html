@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>About Us - Snack Delivery</title>
+    <style type="text/css">body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #ffcc00;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+main {
+    padding: 20px;
+}
+
+.about {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    color: #555;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+  
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #ffcc00;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}</style>
+</head>
+<body>
+
+    <header>
+        <h1>About Us</h1>
+    </header>
+
+    <main>
+        <section class="about">
+            <h2>Welcome to Snack Delivery!</h2>
+            <p>
+                We are passionate about bringing joy and delicious flavors to snack lovers everywhere. Founded in [Year], our mission is to satisfy your cravings with a diverse range of high-quality snacks that cater to every taste.
+            </p>
+            <h3>Our Story</h3>
+            <p>
+                What started as a small idea among friends quickly turned into a venture that has grown beyond our expectations. Recognizing a gap in the market for convenient snack delivery, we set out to create a service that not only saves you time but also offers a variety of delightful options you can enjoy anytime, anywhere.
+            </p>
+            <h3>Our Promise</h3>
+            <p>
+                At Snack Delivery, we believe that snacks should not only be tasty but also accessible. We source our products from trusted suppliers who share our commitment to quality and sustainability.
+            </p>
+            <h3>Why Choose Us?</h3>
+            <ul>
+                <li><strong>Convenience:</strong> Order your favorite snacks online for fast delivery.</li>
+                <li><strong>Variety:</strong> Explore our extensive selection of snacks.</li>
+                <li><strong>Quality:</strong> Every product is handpicked for excellence.</li>
+                <li><strong>Customer-Centric:</strong> Your satisfaction is our top priority.</li>
+            </ul>
+            <h3>Join Our Snack Community</h3>
+            <p>
+                We invite you to explore our site, discover new favorites, and join the Snack Delivery community. Together, we can celebrate the joy of snacking, one delivery at a time.
+            </p>
+            <p>Thank you for choosing Snack Delivery!</p>
+        </section>
+    </main>
+
+</body>
+</html>
+{% endblock content %}

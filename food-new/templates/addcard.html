@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<hr>
+
+<div class="container-fluid">
+    <div class="row">
+        {% for e in s %}
+        <!-- Responsive grid layout -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card shadow-lg border-0 rounded-3 custom-card">
+                
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center text-primary fw-bold">{{ e.1 }}</h5>
+                    <p class="card-text text-center text-muted">{{ e.2 }}</p>
+                    
+                    <div class="d-flex justify-content-center mt-auto">
+                        <a href="/details/{{e.0}}" class="btn btn-primary custom-btn">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    /* Smooth hover effect for cards */
+    .custom-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Button animation */
+    .custom-btn {
+        transition: all 0.3s ease-in-out;
+        border-radius: 25px;
+    }
+
+    .custom-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.4);
+    }
+</style>
+
+{% endblock content %}
